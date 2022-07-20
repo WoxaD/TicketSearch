@@ -13,7 +13,7 @@ public class TicketManagerTest {
     Ticket item8 = new Ticket(8, 196_620, "LED", "DXB",505);
 
     @Test
-    public void shouldAddAndRemoveTicketsFromRepository () {
+    public void shouldAddAndRemoveTickets() {
         TicketManager manager = new TicketManager(new TicketRepository ());
         manager.addNewTicket(item1);
         manager.addNewTicket(item2);
@@ -21,13 +21,12 @@ public class TicketManagerTest {
         manager.removeTicketById(item3.getId());
 
         Ticket[] expected = {item1, item2};
-        Ticket[] actual = manager.getSavedTickets();
 
-        assertArrayEquals(expected, actual);
+        assertArrayEquals(expected, manager.getSavedTickets());
     }
 
     @Test
-    public void shouldFindTicketByTwoAirportsAndSortThem () {
+    public void shouldFindAndSortTickets() {
         TicketManager manager = new TicketManager(new TicketRepository ());
         manager.addNewTicket(item1);
         manager.addNewTicket(item2);
@@ -43,7 +42,7 @@ public class TicketManagerTest {
         assertArrayEquals(expected, manager.findAll("LED", "BUD"));
     }
     @Test
-    public void shouldFindTicketByTwoAirportsAndSortThemIfNoItemsInRepository () {
+    public void shouldFindAndSortTicketsIfRepoIsEmpty() {
         TicketManager manager = new TicketManager(new TicketRepository ());
 
 
@@ -52,7 +51,7 @@ public class TicketManagerTest {
         assertArrayEquals(expected, manager.findAll("LED", "BUD"));
     }
     @Test
-    public void shouldFindTicketByTwoAirportsAndSortThemIfOneItemInRepository () {
+    public void shouldFindAndSortTicketsIfRepoHasOneItem() {
         TicketManager manager = new TicketManager(new TicketRepository ());
         manager.addNewTicket(item8);
 
@@ -62,7 +61,7 @@ public class TicketManagerTest {
     }
 
     @Test
-    public void shouldFindTicketByTwoAirportsAndSortThemIfOneItemInRepositoryButDoesNotQualify () {
+    public void shouldFindAndSortTicketsIfRepoHasOneItemButItDoesNotQualify () {
         TicketManager manager = new TicketManager(new TicketRepository ());
         manager.addNewTicket(item1);
 
